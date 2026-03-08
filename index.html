@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker</title>
+
+    <!-- Daisy + tailwind -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google-Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-5xl mx-auto">
+      <!-- Title -->
+      <h1 class="text-3xl font-bold mb-6">Job Application Tracker</h1>
+
+      <!-- Top  -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white p-6 rounded-xl shadow">
+          <p class="text-gray-500">Total</p>
+          <h2  id="total-section" class="text-2xl font-bold">0</h2>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow">
+          <p  class="text-gray-500">Interview</p>
+          <h2 id="interview-section" class="text-2xl font-bold text-teal-600">0</h2>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow">
+          <p  class="text-gray-500">Rejected</p>
+          <h2 id="rejected-section" class="text-2xl font-bold text-red-500">0</h2>
+        </div>
+      </div>
+
+      <!-- Available Jobs Header -->
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold">Available Jobs</h2>
+        <p class="text-gray-500"><span id="available-job">0</span> jobs</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex gap-3 mb-6">
+        <button
+          id="tab-all"
+          onclick="clickTab('all')"
+          class="btn btn-outline btn-sm"
+        >
+          All
+        </button>
+        <button
+          id="tab-interview"
+          onclick="clickTab('interview')"
+          class="btn btn-outline btn-sm"
+        >
+          Interview
+        </button>
+        <button
+          id="tab-rejected"
+          onclick="clickTab('rejected')"
+          class="btn btn-outline btn-sm"
+        >
+          Rejected
+        </button>
+      </div>
+
+      <main id="cards-section">
+        <!-- All cards container -->
+      <div id="all-container" class=" all-card-container flex flex-col gap-4">
+        <!-- Job Card-1 --> 
+        <div id="job-card"
+          class="Card bg-white p-6 rounded-xl shadow border mb-6 flex justify-between"
+        >
+          <!-- Left Side -->
+          <div>
+            <h3 class="text-lg font-semibold">Mobile First Corp</h3>
+            <p class="text-gray-600">React Native Developer</p>
+
+            <p class="text-sm text-gray-500 mt-1">
+              chittagong , Full-time , $130,000 - $175,000
+            </p>
+
+            <!-- Status -->
+            <span  class="Status badge badge-outline mt-2">Not Applied</span>
+
+            <p class="text-gray-600 mt-3 text-sm">
+              Build cross-platform mobile applications using React Native. Work
+              on products used by millions of users worldwide.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-3 mt-4">
+              <button id="interview-btn" class="interview btn btn-sm btn-success btn-outline">
+                Interview
+              </button>
+              <button id="reject-btn" class="reject btn btn-sm btn-error btn-outline">Rejected</button>
+            </div>
+          </div>
+
+          <!-- Delete Button -->
+          <div class="flex items-start">
+            <button id="delete-btn" class="delete btn btn-circle btn-outline">
+              <i class="delete fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+        
+      </div>
+      <!-- Interview-container -->
+        <section class="hidden" id="interview-container">
+          
+        </section>
+        <!-- Reject-container -->
+        <section class="hidden" id="reject-container"></section>
+        <!-- No Jobs Available -->
+        <div id="no-jobs" class="hidden bg-gray-200 p-11 rounded-xl shadow  text-center">
+          <div class="mt-2 max-w-30 mx-auto">
+            <img src="./img/jobs.png" alt="">
+          </div>
+          <p class="text-gray-500 text-lg font-semibold">No Jobs Available</p>
+          <p class="text-gray-400 text-lg font-semibold">Check back soon for new job opportunities</p>
+        </div>
+
+      </main>
+    </div>
+  </body>
+
+  <script src="./js/1-index.js"></script>
+</html>
