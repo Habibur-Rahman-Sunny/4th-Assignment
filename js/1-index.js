@@ -6,7 +6,8 @@ const allContainer = document.getElementById("all-container");
 const interviewContainer = document.getElementById("interview-container");
 const rejectContainer = document.getElementById("reject-container");
 const noJobs = document.getElementById("no-jobs");
-///---
+const availableJobs = document.getElementById("available-job");
+
 const totalState = document.getElementById("total-section");
 
 const interviewState = document.getElementById("interview-section");
@@ -115,7 +116,14 @@ function updateState(){
     interviewState.innerText = counts.interview;
     rejectedState.innerText = counts.rejected;
 
-    //--
+    availableJobs.innerText =  counts[currentTab];
+
+    if(counts[currentTab]<1){
+        noJobs.classList.remove("hidden");
+    }
+    else{
+        noJobs.classList.add("hidden")
+    }
 }
 updateState()
 
